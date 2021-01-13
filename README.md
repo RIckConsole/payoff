@@ -2,7 +2,7 @@
 ## WARNING!!!
 Do NOT run this on your own machine, or someone else's machine. Only run this in a controlled virtual environment as this malware does not contain a decrypt function (on purpose). This was made for educational purposes only. 
 ## What is Payoff?
-Payoff is technically ransomware. Ransomware implies that you can potentially get your data/files back from paying a fee. Payoff does not have any features for decryption or payment of any kind. 
+Payoff is technically not ransomware. Ransomware implies that you can potentially get your data/files back from paying a fee. Payoff does not have any features for decryption or payment of any kind. 
 ## What's it do? 
 It encrypts the contents of your home directories (documents, desktop, pictures, etc) and external drives (D:\\, X:\\, etc) using AES encryption. It also changes your background to a basic ransom note.
 ## Can I send it to a friend as a joke?

